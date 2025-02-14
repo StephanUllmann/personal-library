@@ -43,6 +43,7 @@ const userSignup = asyncHandler(async (req, res, next) => {
 });
 
 const login = asyncHandler(async (req, res, next) => {
+  console.log(process.env.JWT_EXPIRES_IN_DAYS);
   const { email, password } = req.body;
   const user = await UserModel.findOne({ email }).select('+password').lean();
   const match = await bcrypt.compare(password, user.password);
