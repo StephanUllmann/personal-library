@@ -13,6 +13,12 @@ const app = express();
 
 const allowedOrigins = ['http://localhost:5173', 'https://astounding-pudding-a5f367.netlify.app'];
 
+app.use(
+  cors({
+    credentials: true,
+    origin: 'https://astounding-pudding-a5f367.netlify.app',
+  })
+);
 // app.use(
 //   cors({
 //     origin: ['http://localhost:5173', 'http://localhost:5172', 'https://astounding-pudding-a5f367.netlify.app'],
