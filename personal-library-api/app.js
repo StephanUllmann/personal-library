@@ -11,23 +11,23 @@ import cookieParser from 'cookie-parser';
 
 const app = express();
 
-// const allowedOrigins = ['http://localhost:5173', 'http://localhost:5172', 'some.deployed-site.com'];
+const allowedOrigins = ['http://localhost:5173', 'https://astounding-pudding-a5f367.netlify.app'];
 
-app.use(
-  cors({
-    origin: ['http://localhost:5173', 'http://localhost:5172', 'https://astounding-pudding-a5f367.netlify.app'],
-    credentials: true,
-  })
-);
 // app.use(
 //   cors({
-//     origin: (origin, cb) => {
-//       if (!origin || allowedOrigins.includes(origin)) cb(null, true);
-//       else cb(new Error('Not allowed by CORS'));
-//     },
+//     origin: ['http://localhost:5173', 'http://localhost:5172', 'https://astounding-pudding-a5f367.netlify.app'],
 //     credentials: true,
 //   })
 // );
+app.use(
+  cors({
+    origin: (origin, cb) => {
+      if (!origin || allowedOrigins.includes(origin)) cb(null, true);
+      else cb(new Error('Not allowed by CORS'));
+    },
+    credentials: true,
+  })
+);
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
